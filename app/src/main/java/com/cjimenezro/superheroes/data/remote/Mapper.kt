@@ -6,7 +6,7 @@ import com.cjimenezro.superheroes.domain.models.SuperHeroeWork
 
 fun ImagesUrl.toModel():String=this.imageUrl
 
-fun SuperHeroeApiModel.toModel(): SuperHeroePrincipalData =
+fun SuperHeroePincipalDataApiModel.toModel(): SuperHeroePrincipalData =
     SuperHeroePrincipalData(this.id,this.name,this.urlImages.toModel())
 
 fun SuperHeroeBiographyApiModel.toModel(): SuperHeroeBiography = SuperHeroeBiography(this.fullName)

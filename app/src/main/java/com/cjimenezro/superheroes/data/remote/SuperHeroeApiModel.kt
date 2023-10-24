@@ -2,7 +2,7 @@ package com.cjimenezro.superheroes.data.remote
 
 import com.google.gson.annotations.SerializedName
 
-class SuperHeroeApiModel (
+class SuperHeroePincipalDataApiModel (
     @SerializedName("id") val id:Int,
     @SerializedName("name")val name:String,
     @SerializedName("images") val urlImages: ImagesUrl

@@ -9,7 +9,7 @@ import retrofit2.http.Path
 interface SuperHeroeApiService {
 
     @GET("all.json")
-    suspend fun getObject1():Response<List<SuperHeroeWorkApiModel>>
+    suspend fun getObject1():Response<List<SuperHeroePincipalDataApiModel>>
 
     @GET("biography/{superHeoreId}.json")
     suspend fun getObject2(@Path("superHeoreId")superHeoreId:String):Response<SuperHeroeBiographyApiModel>
