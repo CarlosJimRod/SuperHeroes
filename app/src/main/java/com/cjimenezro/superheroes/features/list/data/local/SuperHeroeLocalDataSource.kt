@@ -1,4 +1,4 @@
-package com.cjimenezro.superheroes.data.local
+package com.cjimenezro.superheroes.features.list.data.local
 
 import android.content.Context
 import com.cjimenezro.superheroes.app.serialization.JsonSerialization

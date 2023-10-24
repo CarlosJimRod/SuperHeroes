@@ -1,8 +1,8 @@
-package com.cjimenezro.superheroes.data.remote
+package com.cjimenezro.superheroes.features.list.data.remote
 
-import com.cjimenezro.superheroes.domain.models.SuperHeroeBiography
-import com.cjimenezro.superheroes.domain.models.SuperHeroePrincipalData
-import com.cjimenezro.superheroes.domain.models.SuperHeroeWork
+import com.cjimenezro.superheroes.features.list.domain.SuperHeroeBiography
+import com.cjimenezro.superheroes.features.list.domain.SuperHeroePrincipalData
+import com.cjimenezro.superheroes.features.list.domain.SuperHeroeWork
 
 fun ImagesUrl.toModel():String=this.imageUrl
 

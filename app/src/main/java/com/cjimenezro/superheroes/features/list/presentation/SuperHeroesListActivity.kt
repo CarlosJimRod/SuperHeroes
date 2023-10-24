@@ -1,4 +1,4 @@
-package com.cjimenezro.superheroes.presentation
+package com.cjimenezro.superheroes.features.list.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

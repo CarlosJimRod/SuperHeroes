@@ -1,4 +1,4 @@
-package com.cjimenezro.superheroes.data.remote
+package com.cjimenezro.superheroes.features.list.data.remote
 
 import com.google.gson.annotations.SerializedName
 
