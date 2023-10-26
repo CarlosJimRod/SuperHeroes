@@ -11,14 +11,14 @@ class GetSuperHeroeUseCase(
     private val workRepository: WorkRepository
 ) {
 
-    suspend fun invoke():Either<ErrorApp,List<SuperHeroe>>{
+    suspend operator fun invoke():Either<ErrorApp,List<SuperHeroe>>{
         return try{
             val superHeroesList: MutableList<SuperHeroe> = mutableListOf()
             val result=principalDataRepository.obratinSuperHeroe()
             result.map { superHeroes ->
                 superHeroes.map {superHeroe ->
-                    val biography=biographyRepository.getBiography(superHeroe.id.toString()).get()
-                    val work=workRepository.getWork(superHeroe.id.toString()).get()
+                    val biography=biographyRepository.obtainBiography(superHeroe.id.toString()).get()
+                    val work=workRepository.obtainWork(superHeroe.id.toString()).get()
                     superHeroesList.add(SuperHeroe(superHeroe,biography,work))
                 }
             }

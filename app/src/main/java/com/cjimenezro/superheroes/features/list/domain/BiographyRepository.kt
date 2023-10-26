@@ -5,6 +5,6 @@ import com.cjimenezro.superheroes.app.ErrorApp
 
 interface BiographyRepository {
 
-    suspend fun getBiography(id:String):Either<ErrorApp,SuperHeroeBiography>
+    suspend fun obtainBiography(id:String):Either<ErrorApp,SuperHeroeBiography>
 
 }

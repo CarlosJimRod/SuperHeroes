@@ -5,6 +5,6 @@ import com.cjimenezro.superheroes.app.ErrorApp
 
 interface WorkRepository {
 
-    suspend fun getWork(id:String):Either<ErrorApp,SuperHeroeWork>
+    suspend fun obtainWork(id:String):Either<ErrorApp,SuperHeroeWork>
 
 }
