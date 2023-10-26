@@ -17,5 +17,5 @@ class SuperHeroeBiographyApiModel(
 )
 
 class SuperHeroeWorkApiModel(
-    @SerializedName("ocupation") val occupation:String
+    @SerializedName("occupation") val occupation:String
 )

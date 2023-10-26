@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.cjimenezro.superheroes.R
 import com.cjimenezro.superheroes.app.ErrorApp
 import com.cjimenezro.superheroes.app.extensions.show
 import com.cjimenezro.superheroes.app.serialization.GsonSerialization
@@ -17,11 +18,15 @@ import com.cjimenezro.superheroes.features.list.data.local.WorkLocalDataSource
 import com.cjimenezro.superheroes.features.list.data.remote.SuperHeroesApiClient
 import com.cjimenezro.superheroes.features.list.domain.GetSuperHeroeUseCase
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroe
+import com.faltenreich.skeletonlayout.Skeleton
+import com.faltenreich.skeletonlayout.applySkeleton
 import com.google.android.material.snackbar.Snackbar
 
 class SuperHeroesListActivity : AppCompatActivity() {
 
     lateinit var binding : ActivitySuperHeroeBinding
+
+    private lateinit var skeleton:Skeleton
 
     val viewModel:SuperHeroesListViewModel by lazy {
         SuperHeroesListViewModel(GetSuperHeroeUseCase(
@@ -37,6 +42,7 @@ class SuperHeroesListActivity : AppCompatActivity() {
         setupBinding()
         setupView()
         setupObservers()
+        skeleton=binding.list.applySkeleton(R.layout.view_super_heore_item,8)
         viewModel.loadSuperHeroe()
     }
 
@@ -76,11 +82,11 @@ class SuperHeroesListActivity : AppCompatActivity() {
     }
 
     private fun showLoading(){
-        binding.skeletonLayout.showSkeleton()
+        skeleton.showSkeleton()
     }
 
     private fun hideLoading(){
-        binding.skeletonLayout.showOriginal()
+        skeleton.showOriginal()
     }
 
     private fun showError(error: ErrorApp) {
