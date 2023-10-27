@@ -20,6 +20,7 @@ class BiographyDataRepository(private val localDataSource: BiographyLocalDataSou
                 return localDataSource.getBiography(id)
             }else{
                 val result= apiClient.retrofit.getBiography(id).body()!!
+                localDataSource.saveBiography(result.toModel(),id)
                 return result.toModel().right()
             }
 

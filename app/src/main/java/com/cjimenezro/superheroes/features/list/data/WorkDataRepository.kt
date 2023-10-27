@@ -20,6 +20,7 @@ class WorkDataRepository(private val localDataSource: WorkLocalDataSource,
                 return localDataSource.getWork(id)
             }else{
                 val result= apiClient.retrofit.getWork(id).body()!!
+                localDataSource.saveWork(result.toModel(),id)
                 return result.toModel().right()
             }
 

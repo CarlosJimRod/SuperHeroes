@@ -26,13 +26,15 @@ class SuperHeroesListActivity : AppCompatActivity() {
 
     lateinit var binding : ActivitySuperHeroeBinding
 
+    private val superHeroesApiClient=SuperHeroesApiClient()
+
     private lateinit var skeleton:Skeleton
 
     val viewModel:SuperHeroesListViewModel by lazy {
         SuperHeroesListViewModel(GetSuperHeroeUseCase(
-            SuperHeroeDataRepository(SuperHeroeLocalDataSource(this,GsonSerialization()),SuperHeroesApiClient()),
-            BiographyDataRepository(BiographyLocalDataSource(this,GsonSerialization()),SuperHeroesApiClient()),
-            WorkDataRepository(WorkLocalDataSource(this,GsonSerialization()),SuperHeroesApiClient())
+            SuperHeroeDataRepository(SuperHeroeLocalDataSource(this,GsonSerialization()),superHeroesApiClient),
+            BiographyDataRepository(BiographyLocalDataSource(this,GsonSerialization()),superHeroesApiClient),
+            WorkDataRepository(WorkLocalDataSource(this,GsonSerialization()),superHeroesApiClient)
         ))
     }
 
