@@ -44,7 +44,6 @@ class SuperHeroesListActivity : AppCompatActivity() {
         setupBinding()
         setupView()
         setupObservers()
-        skeleton=binding.list.applySkeleton(R.layout.view_super_heore_item,8)
         viewModel.loadSuperHeroe()
     }
 
@@ -54,6 +53,7 @@ class SuperHeroesListActivity : AppCompatActivity() {
     }
 
     private fun setupView(){
+        skeleton=binding.list.applySkeleton(R.layout.view_super_heore_item,8)
         binding.apply {
             list.layoutManager = LinearLayoutManager(
                 this@SuperHeroesListActivity,

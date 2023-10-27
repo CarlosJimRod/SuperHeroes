@@ -9,7 +9,6 @@ class SuperHeroesDiffUtil: DiffUtil.ItemCallback<SuperHeroe>() {
         return oldItem.principalData.id==newItem.principalData.id
     }
 
-    @SuppressLint("DiffUtilEquals")
     override fun areContentsTheSame(oldItem: SuperHeroe, newItem: SuperHeroe): Boolean {
         return oldItem == newItem
     }
