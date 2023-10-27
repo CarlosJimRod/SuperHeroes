@@ -3,17 +3,19 @@ package com.cjimenezro.superheroes.features.list.domain
 data class SuperHeroe (
     val principalData:SuperHeroePrincipalData,
     val biography: SuperHeroeBiography,
-    val work: SuperHeroeWork
+    val work: SuperHeroeWork,
 )
 
 data class SuperHeroePrincipalData (
     val id:Int,
     val name:String,
-    val imageUrl:String
+    val imageUrl:MutableList<String>,
+    val stats: MutableList<String>
 )
 
 data class SuperHeroeBiography (
-    val fullName:String
+    val fullName:String,
+    val alignment:String
 )
 
 data class SuperHeroeWork (
