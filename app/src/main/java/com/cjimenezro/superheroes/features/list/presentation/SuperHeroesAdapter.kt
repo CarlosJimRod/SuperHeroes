@@ -8,6 +8,12 @@ import com.cjimenezro.superheroes.features.list.domain.SuperHeroe
 
 class SuperHeroesAdapter : ListAdapter<SuperHeroe,SuperHeroesViewHolder>(SuperHeroesDiffUtil()){
 
+    lateinit var onClick:(heroId:Int) -> Unit
+
+    fun setEvent(onClick:(Int) -> Unit){
+        this.onClick=onClick
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SuperHeroesViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.view_super_heore_item,parent,false)
         return SuperHeroesViewHolder(view)
@@ -16,6 +22,6 @@ class SuperHeroesAdapter : ListAdapter<SuperHeroe,SuperHeroesViewHolder>(SuperHe
     override fun getItemCount(): Int =currentList.size
 
     override fun onBindViewHolder(holder: SuperHeroesViewHolder, position: Int) {
-        holder.bind(currentList[position])
+        holder.bind(currentList[position],onClick)
     }
 }

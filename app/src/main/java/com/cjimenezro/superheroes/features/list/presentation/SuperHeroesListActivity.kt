@@ -1,5 +1,6 @@
 package com.cjimenezro.superheroes.features.list.presentation
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
@@ -44,6 +45,7 @@ class SuperHeroesListActivity : AppCompatActivity() {
         setupBinding()
         setupView()
         setupObservers()
+        skeleton=binding.list.applySkeleton(R.layout.view_super_heore_item,8)
         viewModel.loadSuperHeroe()
     }
 
@@ -53,15 +55,23 @@ class SuperHeroesListActivity : AppCompatActivity() {
     }
 
     private fun setupView(){
-        skeleton=binding.list.applySkeleton(R.layout.view_super_heore_item,8)
         binding.apply {
             list.layoutManager = LinearLayoutManager(
                 this@SuperHeroesListActivity,
                 LinearLayoutManager.VERTICAL,
                 false
             )
+            superHeroApadter.setEvent {
+                navigateToDetail(it)
+            }
             list.adapter = superHeroApadter
         }
+    }
+
+    private fun navigateToDetail(heroId: Int){
+        val intent = Intent(this,SuperHeroesDetailActivity::class.java)
+        intent.putExtra("KEY_HERO_ID",heroId)
+        startActivity(intent)
     }
 
     private fun setupObservers(){
