@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">SuperHeroes</string>
     <string name="label_error">ERROR</string>
+    <string name="label_intelligence">Inteligencia</string>
+    <string name="label_speed">Velocidad</string>
+    <string name="label_combat">Combate</string>
 </resources>
