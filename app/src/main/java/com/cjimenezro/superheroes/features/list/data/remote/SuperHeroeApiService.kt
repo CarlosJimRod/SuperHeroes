@@ -11,6 +11,9 @@ interface SuperHeroeApiService {
     @GET("heroes.json")
     suspend fun getPrincipaData():Response<List<SuperHeroePincipalDataApiModel>>
 
+    @GET("heroes/{superHeoreId}.json")
+    suspend fun getPrincipaDataById(@Path("superHeoreId")superHeoreId : String):Response<SuperHeroePincipalDataApiModel>
+
     @GET("biography/{superHeoreId}.json")
     suspend fun getBiography(@Path("superHeoreId")superHeoreId : String):Response<SuperHeroeBiographyApiModel>
 
