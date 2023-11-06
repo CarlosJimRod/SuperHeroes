@@ -33,4 +33,19 @@ class SuperHeroeDataRepository(private val localDataSource: SuperHeroeLocalDataS
             return ErrorApp.UnknowError.left()
         }
     }
+
+    override suspend fun obtainSuperHeroeById(id: String): Either<ErrorApp, SuperHeroePrincipalData> {
+        try {
+            if (localDataSource.getSuperHeroeById(id).isRight()){
+                return localDataSource.getSuperHeroeById(id)
+            }else{
+                val result= apiClient.retrofit.getPrincipaDataById(id).body()!!
+                localDataSource.saveSuperHeroe(result.toModel())
+                return result.toModel().right()
+            }
+
+        }catch (ex:Exception){
+            return ErrorApp.UnknowError.left()
+        }
+    }
 }
