@@ -7,4 +7,6 @@ interface SuperHeroeRepository {
 
     suspend fun obratinSuperHeroe():Either<ErrorApp,List<SuperHeroePrincipalData>>
 
+    suspend fun obtainSuperHeroeById(id:String):Either<ErrorApp,SuperHeroePrincipalData>
+
 }
