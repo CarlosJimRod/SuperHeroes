@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     fun changeFragment(fragment: Fragment) {
         supportFragmentManager.commit {
-            replace(R.id.fragmento, fragment)
+            replace(R.id.fragment_container, fragment)
             setReorderingAllowed(true)
             addToBackStack(null) // Name can be null
         }

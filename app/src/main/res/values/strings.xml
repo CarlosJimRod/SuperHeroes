@@ -4,4 +4,9 @@
     <string name="label_intelligence">Inteligencia</string>
     <string name="label_speed">Velocidad</string>
     <string name="label_combat">Combate</string>
+    <string name="label_action_favorite">Favoritos</string>
+    <string name="label_action_delete">Eliminar</string>
+    <string name="label_action_add">Añadir</string>
+    <string name="fragment_list_title">Fragmento Listado</string>
+    <string name="fragment_detail_title">Fragmento Detalle</string>
 </resources>
