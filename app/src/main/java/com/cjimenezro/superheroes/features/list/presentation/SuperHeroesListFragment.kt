@@ -10,9 +10,17 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cjimenezro.superheroes.R
+import com.cjimenezro.superheroes.app.serialization.GsonSerialization
 import com.cjimenezro.superheroes.databinding.FragmentSuperHeroeBinding
 import com.cjimenezro.superheroes.features.list.MainActivity
+import com.cjimenezro.superheroes.features.list.data.BiographyDataRepository
+import com.cjimenezro.superheroes.features.list.data.SuperHeroeDataRepository
+import com.cjimenezro.superheroes.features.list.data.WorkDataRepository
+import com.cjimenezro.superheroes.features.list.data.local.BiographyLocalDataSource
+import com.cjimenezro.superheroes.features.list.data.local.SuperHeroeLocalDataSource
+import com.cjimenezro.superheroes.features.list.data.local.WorkLocalDataSource
 import com.cjimenezro.superheroes.features.list.data.remote.SuperHeroesApiClient
+import com.cjimenezro.superheroes.features.list.domain.GetSuperHeroeUseCase
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroe
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
@@ -27,7 +35,15 @@ class SuperHeroesListFragment : Fragment() {
 
     private lateinit var skeleton:Skeleton
 
-    val viewModel by viewModels<SuperHeroesListViewModel>()
+    val viewModel:SuperHeroesListViewModel by lazy {
+        SuperHeroesListViewModel(
+            GetSuperHeroeUseCase(
+            SuperHeroeDataRepository(SuperHeroeLocalDataSource((activity as MainActivity), GsonSerialization()),superHeroesApiClient),
+            BiographyDataRepository(BiographyLocalDataSource((activity as MainActivity),GsonSerialization()),superHeroesApiClient),
+            WorkDataRepository(WorkLocalDataSource((activity as MainActivity),GsonSerialization()),superHeroesApiClient)
+        )
+        )
+    }
 
     private val superHeroApadter = SuperHeroesAdapter()
 
@@ -49,7 +65,7 @@ class SuperHeroesListFragment : Fragment() {
                 false
             )
             superHeroApadter.setEvent {
-                (activity as MainActivity).changeFragment(SuperHeroesDetailFragment.newInstance(it))
+                (activity as MainActivity).changeFragment(SuperHeroesDetailFragment.newInstance(it.toString()))
             }
             list.adapter = superHeroApadter
             layoutList.toolbar.apply {

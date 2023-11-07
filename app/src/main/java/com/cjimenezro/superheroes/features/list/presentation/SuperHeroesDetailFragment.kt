@@ -38,10 +38,6 @@ class SuperHeroesDetailFragment : Fragment() {
         _binding = FragmentSuperHeroeDetailsBinding.inflate(inflater, container, false)
         setupView()
         return binding.root
-        /*
-        val heroId=intent.extras?.getInt(HERO_ID_PARAM)
-        setupObservers(heroId!!)
-        viewModel.loadSuperHeroe(heroId.toString())*/
     }
 
     private fun getParams(): String = arguments?.getString("ARG_PARAM1") ?: ""
@@ -97,6 +93,7 @@ class SuperHeroesDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val heroId=getParams()
         setupObservers()
+        viewModel.loadSuperHeroe(heroId)
     }
 
     private fun setupObservers(){
