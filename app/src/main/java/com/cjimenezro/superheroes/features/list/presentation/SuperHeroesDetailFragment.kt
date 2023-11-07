@@ -14,9 +14,17 @@ import com.cjimenezro.superheroes.R
 import com.cjimenezro.superheroes.app.ErrorApp
 import com.cjimenezro.superheroes.app.extensions.setUrl
 import com.cjimenezro.superheroes.app.extensions.show
+import com.cjimenezro.superheroes.app.serialization.GsonSerialization
 import com.cjimenezro.superheroes.databinding.FragmentSuperHeroeDetailsBinding
 import com.cjimenezro.superheroes.features.list.MainActivity
+import com.cjimenezro.superheroes.features.list.data.BiographyDataRepository
+import com.cjimenezro.superheroes.features.list.data.SuperHeroeDataRepository
+import com.cjimenezro.superheroes.features.list.data.WorkDataRepository
+import com.cjimenezro.superheroes.features.list.data.local.BiographyLocalDataSource
+import com.cjimenezro.superheroes.features.list.data.local.SuperHeroeLocalDataSource
+import com.cjimenezro.superheroes.features.list.data.local.WorkLocalDataSource
 import com.cjimenezro.superheroes.features.list.data.remote.SuperHeroesApiClient
+import com.cjimenezro.superheroes.features.list.domain.GetSuperHeroeByIdUseCase
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroe
 import com.google.android.material.snackbar.Snackbar
 
@@ -25,7 +33,24 @@ class SuperHeroesDetailFragment : Fragment() {
     private var _binding: FragmentSuperHeroeDetailsBinding? = null
     private val binding get() = _binding!!
 
-    val viewModel by viewModels<SuperHeroesDetailViewModel>()
+    val viewModel:SuperHeroesDetailViewModel by lazy {
+        SuperHeroesDetailViewModel(
+            GetSuperHeroeByIdUseCase(
+                SuperHeroeDataRepository(
+                    SuperHeroeLocalDataSource((activity as MainActivity), GsonSerialization()),
+                    superHeroesApiClient
+                ),
+                BiographyDataRepository(
+                    BiographyLocalDataSource((activity as MainActivity), GsonSerialization()),
+                    superHeroesApiClient
+                ),
+                WorkDataRepository(
+                    WorkLocalDataSource((activity as MainActivity), GsonSerialization()),
+                    superHeroesApiClient
+                )
+            )
+        )
+    }
 
     private val superHeroesApiClient=SuperHeroesApiClient()
 
