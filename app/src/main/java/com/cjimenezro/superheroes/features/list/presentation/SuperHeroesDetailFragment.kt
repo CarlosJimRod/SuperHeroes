@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cjimenezro.superheroes.R
 import com.cjimenezro.superheroes.app.ErrorApp
@@ -32,6 +33,8 @@ class SuperHeroesDetailFragment : Fragment() {
 
     private var _binding: FragmentSuperHeroeDetailsBinding? = null
     private val binding get() = _binding!!
+
+    val args: SuperHeroesDetailFragmentArgs by navArgs()
 
     val viewModel:SuperHeroesDetailViewModel by lazy {
         SuperHeroesDetailViewModel(
@@ -64,8 +67,6 @@ class SuperHeroesDetailFragment : Fragment() {
         setupView()
         return binding.root
     }
-
-    private fun getParams(): String = arguments?.getString("ARG_PARAM1") ?: ""
 
     private fun setupView(){
         binding.apply {
@@ -116,9 +117,8 @@ class SuperHeroesDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val heroId=getParams()
         setupObservers()
-        viewModel.loadSuperHeroe(heroId)
+        viewModel.loadSuperHeroe(args.subjectId)
     }
 
     private fun setupObservers(){
