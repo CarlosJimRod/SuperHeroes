@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cjimenezro.superheroes.R
@@ -76,9 +77,6 @@ class SuperHeroesDetailFragment : Fragment() {
                 false
             )
             listImagenes.adapter= superHeroeDetailAdapter
-            layoutDetail.toolbar.setOnClickListener {
-                (activity as MainActivity).changeFragment(SuperHeroesListFragment.newInstance())
-            }
             layoutDetail.toolbar.apply {
                 //Establecemos el título por programación
                 title = getString(R.string.fragment_detail_title)
@@ -91,7 +89,7 @@ class SuperHeroesDetailFragment : Fragment() {
 
                 //Añadimos una acción al botón de navegación
                 setNavigationOnClickListener {
-                    //Volver a atrás...
+                    findNavController().navigateUp()
                 }
 
                 //Añadimos los eventos a los botones del menú
@@ -169,15 +167,6 @@ class SuperHeroesDetailFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-        fun newInstance(param1: String) =
-            SuperHeroesDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString("ARG_PARAM1", param1)
-                }
-            }
     }
 
 }

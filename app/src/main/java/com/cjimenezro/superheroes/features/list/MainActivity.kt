@@ -22,12 +22,4 @@ class MainActivity : AppCompatActivity() {
     fun showMessage() {
         Snackbar.make(binding.root, getString(R.string.app_name), Snackbar.LENGTH_SHORT).show()
     }
-
-    fun changeFragment(fragment: Fragment) {
-        supportFragmentManager.commit {
-            replace(R.id.fragment_container, fragment)
-            setReorderingAllowed(true)
-            addToBackStack(null) // Name can be null
-        }
-    }
 }

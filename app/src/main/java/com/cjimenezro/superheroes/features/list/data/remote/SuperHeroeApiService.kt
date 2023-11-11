@@ -1,7 +1,5 @@
 package com.cjimenezro.superheroes.features.list.data.remote
 
-import com.cjimenezro.superheroes.features.list.data.remote.SuperHeroeBiographyApiModel
-import com.cjimenezro.superheroes.features.list.data.remote.SuperHeroeWorkApiModel
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
