@@ -6,11 +6,7 @@ import com.cjimenezro.superheroes.app.ErrorApp
 import com.cjimenezro.superheroes.app.left
 import com.cjimenezro.superheroes.app.right
 import com.cjimenezro.superheroes.app.serialization.JsonSerialization
-import com.cjimenezro.superheroes.features.list.data.remote.SuperHeroePincipalDataApiModel
-import com.cjimenezro.superheroes.features.list.domain.SuperHeroe
-import com.cjimenezro.superheroes.features.list.domain.SuperHeroeBiography
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroePrincipalData
-import com.cjimenezro.superheroes.features.list.domain.SuperHeroeWork
 
 class SuperHeroeLocalDataSource(private val context: Context,private val jsonSerialization: JsonSerialization) {
 

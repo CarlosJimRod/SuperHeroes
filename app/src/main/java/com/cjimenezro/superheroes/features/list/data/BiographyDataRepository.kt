@@ -15,17 +15,17 @@ class BiographyDataRepository(private val localDataSource: BiographyLocalDataSou
                               ):BiographyRepository {
 
     override suspend fun obtainBiography(id: String): Either<ErrorApp, SuperHeroeBiography> {
-        try {
+        return try {
             if (localDataSource.getBiography(id).isRight()){
-                return localDataSource.getBiography(id)
+                localDataSource.getBiography(id)
             }else{
                 val result= apiClient.retrofit.getBiography(id).body()!!
                 localDataSource.saveBiography(result.toModel(),id)
-                return result.toModel().right()
+                result.toModel().right()
             }
 
         }catch (ex:Exception){
-            return ErrorApp.UnknowError.left()
+            ErrorApp.UnknowError.left()
         }
     }
 }

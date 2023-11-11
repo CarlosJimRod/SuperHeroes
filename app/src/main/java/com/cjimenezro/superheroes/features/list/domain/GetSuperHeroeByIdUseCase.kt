@@ -18,7 +18,7 @@ class GetSuperHeroeByIdUseCase(
             val work=workRepository.obtainWork(id).get()
             val superHeroe=SuperHeroe(result,biography,work)
             superHeroe.right()
-        }catch (Ex:Exception){
+        }catch (ex:Exception){
             return ErrorApp.UnknowError.left()
         }
     }
