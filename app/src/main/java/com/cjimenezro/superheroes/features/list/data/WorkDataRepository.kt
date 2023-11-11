@@ -15,17 +15,17 @@ class WorkDataRepository(private val localDataSource: WorkLocalDataSource,
                          ):WorkRepository {
 
     override suspend fun obtainWork(id: String): Either<ErrorApp, SuperHeroeWork> {
-        try {
+        return try {
             if (localDataSource.getWork(id).isRight()){
-                return localDataSource.getWork(id)
+                localDataSource.getWork(id)
             }else{
                 val result= apiClient.retrofit.getWork(id).body()!!
                 localDataSource.saveWork(result.toModel(),id)
-                return result.toModel().right()
+                result.toModel().right()
             }
 
         }catch (ex:Exception){
-            return ErrorApp.UnknowError.left()
+            ErrorApp.UnknowError.left()
         }
     }
 }

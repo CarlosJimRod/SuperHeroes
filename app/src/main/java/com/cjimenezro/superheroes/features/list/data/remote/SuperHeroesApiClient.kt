@@ -1,4 +1,5 @@
 package com.cjimenezro.superheroes.features.list.data.remote
+
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

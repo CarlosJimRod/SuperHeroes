@@ -17,35 +17,35 @@ class SuperHeroeDataRepository(private val localDataSource: SuperHeroeLocalDataS
     override suspend fun obratinSuperHeroe(): Either<ErrorApp, List<SuperHeroePrincipalData>> {
         val superHeroes:MutableList<SuperHeroePrincipalData> = mutableListOf()
         val listaLocal=localDataSource.getSuperHeroe().get()
-        try {
+        return try {
             if (listaLocal.size!=0){
-                return localDataSource.getSuperHeroe()
+                localDataSource.getSuperHeroe()
             }else{
                 val result= apiClient.retrofit.getPrincipaData().body()!!
                 for (i in result.indices){
                     superHeroes.add(result[i].toModel())
                     localDataSource.saveSuperHeroe(superHeroes[i])
                 }
-                return superHeroes.right()
+                superHeroes.right()
             }
 
         }catch (ex:Exception){
-            return ErrorApp.UnknowError.left()
+            ErrorApp.UnknowError.left()
         }
     }
 
     override suspend fun obtainSuperHeroeById(id: String): Either<ErrorApp, SuperHeroePrincipalData> {
-        try {
+        return try {
             if (localDataSource.getSuperHeroeById(id).isRight()){
-                return localDataSource.getSuperHeroeById(id)
+                localDataSource.getSuperHeroeById(id)
             }else{
                 val result= apiClient.retrofit.getPrincipaDataById(id).body()!!
                 localDataSource.saveSuperHeroe(result.toModel())
-                return result.toModel().right()
+                result.toModel().right()
             }
 
         }catch (ex:Exception){
-            return ErrorApp.UnknowError.left()
+            ErrorApp.UnknowError.left()
         }
     }
 }
