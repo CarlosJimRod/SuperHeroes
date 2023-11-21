@@ -12,7 +12,7 @@ import retrofit2.Retrofit
 class SuperHeroeProvides {
 
     @Provides
-    fun provideSuperHeroeApiService (retrofit: Retrofit) =
+    fun provideSuperHeroeApiService(retrofit: Retrofit): SuperHeroeApiService =
         retrofit.create(SuperHeroeApiService::class.java)
 
 }
