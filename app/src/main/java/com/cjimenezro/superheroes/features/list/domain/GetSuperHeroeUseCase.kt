@@ -4,8 +4,9 @@ import com.cjimenezro.superheroes.app.Either
 import com.cjimenezro.superheroes.app.ErrorApp
 import com.cjimenezro.superheroes.app.left
 import com.cjimenezro.superheroes.app.right
+import javax.inject.Inject
 
-class GetSuperHeroeUseCase(
+class GetSuperHeroeUseCase @Inject constructor(
     private val principalDataRepository: SuperHeroeRepository,
     private val biographyRepository: BiographyRepository,
     private val workRepository: WorkRepository

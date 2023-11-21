@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,7 +25,9 @@ import com.cjimenezro.superheroes.features.list.domain.SuperHeroe
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SuperHeroesListFragment : Fragment() {
 
     private var _binding: FragmentSuperHeroeBinding? = null
@@ -34,15 +37,7 @@ class SuperHeroesListFragment : Fragment() {
 
     private lateinit var skeleton:Skeleton
 
-    val viewModel:SuperHeroesListViewModel by lazy {
-        SuperHeroesListViewModel(
-            GetSuperHeroeUseCase(
-            SuperHeroeDataRepository(SuperHeroeLocalDataSource((activity as MainActivity), GsonSerialization()),superHeroesApiClient),
-            BiographyDataRepository(BiographyLocalDataSource((activity as MainActivity),GsonSerialization()),superHeroesApiClient),
-            WorkDataRepository(WorkLocalDataSource((activity as MainActivity),GsonSerialization()),superHeroesApiClient)
-        )
-        )
-    }
+    val viewModel by viewModels<SuperHeroesListViewModel>()
 
     private val superHeroApadter = SuperHeroesAdapter()
 

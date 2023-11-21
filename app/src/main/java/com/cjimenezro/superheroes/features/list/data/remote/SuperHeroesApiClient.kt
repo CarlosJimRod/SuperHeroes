@@ -4,8 +4,9 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
-class SuperHeroesApiClient {
+class SuperHeroesApiClient @Inject constructor(){
 
     private val urlApi=" https://dam.sitehub.es/api-curso/superheroes/"
 

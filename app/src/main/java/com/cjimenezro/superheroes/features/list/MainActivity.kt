@@ -8,7 +8,9 @@ import androidx.fragment.app.commit
 import com.cjimenezro.superheroes.R
 import com.cjimenezro.superheroes.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!

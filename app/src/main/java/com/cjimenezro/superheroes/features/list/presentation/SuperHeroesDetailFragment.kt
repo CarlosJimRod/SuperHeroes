@@ -29,7 +29,9 @@ import com.cjimenezro.superheroes.features.list.data.remote.SuperHeroesApiClient
 import com.cjimenezro.superheroes.features.list.domain.GetSuperHeroeByIdUseCase
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroe
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SuperHeroesDetailFragment : Fragment() {
 
     private var _binding: FragmentSuperHeroeDetailsBinding? = null
@@ -37,24 +39,7 @@ class SuperHeroesDetailFragment : Fragment() {
 
     val args: SuperHeroesDetailFragmentArgs by navArgs()
 
-    val viewModel:SuperHeroesDetailViewModel by lazy {
-        SuperHeroesDetailViewModel(
-            GetSuperHeroeByIdUseCase(
-                SuperHeroeDataRepository(
-                    SuperHeroeLocalDataSource((activity as MainActivity), GsonSerialization()),
-                    superHeroesApiClient
-                ),
-                BiographyDataRepository(
-                    BiographyLocalDataSource((activity as MainActivity), GsonSerialization()),
-                    superHeroesApiClient
-                ),
-                WorkDataRepository(
-                    WorkLocalDataSource((activity as MainActivity), GsonSerialization()),
-                    superHeroesApiClient
-                )
-            )
-        )
-    }
+    val viewModel by viewModels<SuperHeroesDetailViewModel>()
 
     private val superHeroesApiClient=SuperHeroesApiClient()
 

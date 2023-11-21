@@ -1,10 +1,9 @@
 package com.cjimenezro.superheroes.app.serialization
 
 import com.google.gson.Gson
+import javax.inject.Inject
 
-class GsonSerialization: JsonSerialization {
-
-    private val gson= Gson()
+class GsonSerialization @Inject constructor(val gson: Gson): JsonSerialization {
     override fun <T> toJson(obj: T, typeClass: Class<T>): String {
         return gson.toJson(obj, typeClass)
     }

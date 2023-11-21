@@ -7,10 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.cjimenezro.superheroes.app.ErrorApp
 import com.cjimenezro.superheroes.features.list.domain.GetSuperHeroeUseCase
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroe
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SuperHeroesListViewModel(private val getSuperHeroeUseCase: GetSuperHeroeUseCase)
+@HiltViewModel
+class SuperHeroesListViewModel @Inject constructor(private val getSuperHeroeUseCase: GetSuperHeroeUseCase)
     :ViewModel() {
 
     private val _uiState= MutableLiveData<UiState>()

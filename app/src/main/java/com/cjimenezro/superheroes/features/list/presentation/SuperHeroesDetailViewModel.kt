@@ -8,10 +8,13 @@ import com.cjimenezro.superheroes.app.ErrorApp
 import com.cjimenezro.superheroes.features.list.domain.GetSuperHeroeByIdUseCase
 import com.cjimenezro.superheroes.features.list.domain.GetSuperHeroeUseCase
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroe
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SuperHeroesDetailViewModel(private val getSuperHeroeByIdUseCase: GetSuperHeroeByIdUseCase)
+@HiltViewModel
+class SuperHeroesDetailViewModel @Inject constructor(private val getSuperHeroeByIdUseCase: GetSuperHeroeByIdUseCase)
     : ViewModel() {
 
     private val _uiState= MutableLiveData<UiState>()
