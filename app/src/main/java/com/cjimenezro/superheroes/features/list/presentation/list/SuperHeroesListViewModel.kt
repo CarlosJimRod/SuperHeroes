@@ -1,4 +1,4 @@
-package com.cjimenezro.superheroes.features.list.presentation
+package com.cjimenezro.superheroes.features.list.presentation.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -1,4 +1,4 @@
-package com.cjimenezro.superheroes.features.list.presentation
+package com.cjimenezro.superheroes.features.list.presentation.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cjimenezro.superheroes.app.ErrorApp
 import com.cjimenezro.superheroes.features.list.domain.GetSuperHeroeByIdUseCase
-import com.cjimenezro.superheroes.features.list.domain.GetSuperHeroeUseCase
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroe
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

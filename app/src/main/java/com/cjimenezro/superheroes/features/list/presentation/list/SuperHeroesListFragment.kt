@@ -1,4 +1,4 @@
-package com.cjimenezro.superheroes.features.list.presentation
+package com.cjimenezro.superheroes.features.list.presentation.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,18 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cjimenezro.superheroes.R
-import com.cjimenezro.superheroes.app.serialization.GsonSerialization
 import com.cjimenezro.superheroes.databinding.FragmentSuperHeroeBinding
 import com.cjimenezro.superheroes.features.list.MainActivity
-import com.cjimenezro.superheroes.features.list.data.BiographyDataRepository
-import com.cjimenezro.superheroes.features.list.data.SuperHeroeDataRepository
-import com.cjimenezro.superheroes.features.list.data.WorkDataRepository
-import com.cjimenezro.superheroes.features.list.data.local.BiographyLocalDataSource
-import com.cjimenezro.superheroes.features.list.data.local.SuperHeroeLocalDataSource
-import com.cjimenezro.superheroes.features.list.data.local.WorkLocalDataSource
 import com.cjimenezro.superheroes.features.list.data.remote.SuperHeroesApiClient
-import com.cjimenezro.superheroes.features.list.domain.GetSuperHeroeUseCase
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroe
+import com.cjimenezro.superheroes.features.list.presentation.list.adapter.SuperHeroesListAdapter
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
 import com.google.android.material.snackbar.Snackbar
@@ -39,7 +32,7 @@ class SuperHeroesListFragment : Fragment() {
 
     val viewModel by viewModels<SuperHeroesListViewModel>()
 
-    private val superHeroApadter = SuperHeroesAdapter()
+    private val superHeroApadter = SuperHeroesListAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
