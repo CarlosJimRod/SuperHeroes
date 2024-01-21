@@ -1,26 +1,28 @@
-package com.cjimenezro.superheroes.features.list.presentation
+package com.cjimenezro.superheroes.features.list.presentation.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cjimenezro.superheroes.app.ErrorApp
-import com.cjimenezro.superheroes.features.list.domain.GetSuperHeroeByIdUseCase
 import com.cjimenezro.superheroes.features.list.domain.GetSuperHeroeUseCase
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroe
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SuperHeroesDetailViewModel(private val getSuperHeroeByIdUseCase: GetSuperHeroeByIdUseCase)
-    : ViewModel() {
+@HiltViewModel
+class SuperHeroesListViewModel @Inject constructor(private val getSuperHeroeUseCase: GetSuperHeroeUseCase)
+    :ViewModel() {
 
     private val _uiState= MutableLiveData<UiState>()
-    val uiState: LiveData<UiState> = _uiState
+    val uiState:LiveData<UiState> = _uiState
 
-    fun loadSuperHeroe(id:String){
+    fun loadSuperHeroe(){
         _uiState.value= UiState(isLoading = true)
         viewModelScope.launch(Dispatchers.IO) {
-            getSuperHeroeByIdUseCase(id).fold(
+            getSuperHeroeUseCase().fold(
                 { responseError(it) },
                 { responseGetSuperHeroeSuccess(it) })
         }
@@ -30,7 +32,7 @@ class SuperHeroesDetailViewModel(private val getSuperHeroeByIdUseCase: GetSuperH
         _uiState.postValue(UiState(errorApp = errorApp, isLoading = false))
     }
 
-    private fun responseGetSuperHeroeSuccess(superHeroe: SuperHeroe){
+    private fun responseGetSuperHeroeSuccess(superHeroe: List<SuperHeroe>){
         _uiState.postValue(UiState(superHeroe=superHeroe, isLoading = false))
     }
 
@@ -38,6 +40,6 @@ class SuperHeroesDetailViewModel(private val getSuperHeroeByIdUseCase: GetSuperH
     data class UiState(
         val errorApp: ErrorApp? = null,
         val isLoading: Boolean = false,
-        val superHeroe: SuperHeroe? = null
+        val superHeroe: List<SuperHeroe>? = null
     )
 }

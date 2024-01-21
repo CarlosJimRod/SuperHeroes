@@ -1,4 +1,4 @@
-package com.cjimenezro.superheroes.features.list.presentation
+package com.cjimenezro.superheroes.features.list.presentation.detail.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 

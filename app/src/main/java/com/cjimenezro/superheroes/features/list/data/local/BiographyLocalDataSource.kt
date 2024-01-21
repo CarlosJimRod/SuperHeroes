@@ -7,8 +7,12 @@ import com.cjimenezro.superheroes.app.left
 import com.cjimenezro.superheroes.app.right
 import com.cjimenezro.superheroes.app.serialization.JsonSerialization
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroeBiography
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class BiographyLocalDataSource(private val context: Context, private val jsonSerialization: JsonSerialization) {
+class BiographyLocalDataSource @Inject constructor(
+    @ApplicationContext private val context: Context,
+    private val jsonSerialization: JsonSerialization) {
 
     private val sharedPref=context.getSharedPreferences("Biography",Context.MODE_PRIVATE)
 

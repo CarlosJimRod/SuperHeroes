@@ -1,4 +1,4 @@
-package com.cjimenezro.superheroes.features.list.presentation
+package com.cjimenezro.superheroes.features.list.presentation.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,23 +13,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cjimenezro.superheroes.R
-import com.cjimenezro.superheroes.app.ErrorApp
 import com.cjimenezro.superheroes.app.extensions.setUrl
-import com.cjimenezro.superheroes.app.extensions.show
-import com.cjimenezro.superheroes.app.serialization.GsonSerialization
 import com.cjimenezro.superheroes.databinding.FragmentSuperHeroeDetailsBinding
-import com.cjimenezro.superheroes.features.list.MainActivity
-import com.cjimenezro.superheroes.features.list.data.BiographyDataRepository
-import com.cjimenezro.superheroes.features.list.data.SuperHeroeDataRepository
-import com.cjimenezro.superheroes.features.list.data.WorkDataRepository
-import com.cjimenezro.superheroes.features.list.data.local.BiographyLocalDataSource
-import com.cjimenezro.superheroes.features.list.data.local.SuperHeroeLocalDataSource
-import com.cjimenezro.superheroes.features.list.data.local.WorkLocalDataSource
 import com.cjimenezro.superheroes.features.list.data.remote.SuperHeroesApiClient
-import com.cjimenezro.superheroes.features.list.domain.GetSuperHeroeByIdUseCase
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroe
+import com.cjimenezro.superheroes.features.list.presentation.detail.adapter.SuperHeroesDetailAdapter
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SuperHeroesDetailFragment : Fragment() {
 
     private var _binding: FragmentSuperHeroeDetailsBinding? = null
@@ -37,28 +29,11 @@ class SuperHeroesDetailFragment : Fragment() {
 
     val args: SuperHeroesDetailFragmentArgs by navArgs()
 
-    val viewModel:SuperHeroesDetailViewModel by lazy {
-        SuperHeroesDetailViewModel(
-            GetSuperHeroeByIdUseCase(
-                SuperHeroeDataRepository(
-                    SuperHeroeLocalDataSource((activity as MainActivity), GsonSerialization()),
-                    superHeroesApiClient
-                ),
-                BiographyDataRepository(
-                    BiographyLocalDataSource((activity as MainActivity), GsonSerialization()),
-                    superHeroesApiClient
-                ),
-                WorkDataRepository(
-                    WorkLocalDataSource((activity as MainActivity), GsonSerialization()),
-                    superHeroesApiClient
-                )
-            )
-        )
-    }
+    val viewModel by viewModels<SuperHeroesDetailViewModel>()
 
     private val superHeroesApiClient=SuperHeroesApiClient()
 
-    private val superHeroeDetailAdapter=SuperHeroesDetailAdapter()
+    private val superHeroeDetailAdapter= SuperHeroesDetailAdapter()
     override fun onCreateView(
         inflater: LayoutInflater,
         container:ViewGroup?,

@@ -1,4 +1,4 @@
-package com.cjimenezro.superheroes.features.list.presentation
+package com.cjimenezro.superheroes.features.list.presentation.list.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -6,7 +6,7 @@ import com.cjimenezro.superheroes.app.extensions.setUrl
 import com.cjimenezro.superheroes.databinding.ViewSuperHeoreItemBinding
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroe
 
-class SuperHeroesViewHolder(val view: View):RecyclerView.ViewHolder(view) {
+class SuperHeroesListViewHolder(val view: View):RecyclerView.ViewHolder(view) {
 
     private lateinit var binding : ViewSuperHeoreItemBinding
     fun bind(superHeroe: SuperHeroe, onClick: (Int) ->Unit){
