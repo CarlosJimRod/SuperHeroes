@@ -25,7 +25,7 @@ class WorkLocalDataSource @Inject constructor(
             }
             true.right()
         }catch (ex:Exception){
-            return ErrorApp.UnknowError.left()
+            return ErrorApp.UnknownError.left()
         }
     }
 
@@ -33,13 +33,13 @@ class WorkLocalDataSource @Inject constructor(
         return try {
             val jsonWork=sharedPref.getString(id,null)
             if (jsonWork.isNullOrBlank()){
-                ErrorApp.UnknowError.left()
+                ErrorApp.UnknownError.left()
             }else{
                 val work=jsonSerialization.fromJson(jsonWork!!,SuperHeroeWork::class.java)
                 work.right()
             }
         }catch (ex:Exception){
-            ErrorApp.UnknowError.left()
+            ErrorApp.UnknownError.left()
         }
 
     }

@@ -2,52 +2,42 @@ package com.cjimenezro.superheroes.features.list.data
 
 import com.cjimenezro.superheroes.app.Either
 import com.cjimenezro.superheroes.app.ErrorApp
-import com.cjimenezro.superheroes.app.left
-import com.cjimenezro.superheroes.app.right
 import com.cjimenezro.superheroes.features.list.data.local.SuperHeroeLocalDataSource
-import com.cjimenezro.superheroes.features.list.data.remote.SuperHeroeApiService
-import com.cjimenezro.superheroes.features.list.data.remote.SuperHeroesApiClient
-import com.cjimenezro.superheroes.features.list.data.remote.toModel
+import com.cjimenezro.superheroes.features.list.data.remote.SuperHeroesRemoteDataSource
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroePrincipalData
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroeRepository
 import javax.inject.Inject
 
-class SuperHeroeDataRepository @Inject constructor(private val localDataSource: SuperHeroeLocalDataSource,
-                               private val apiClient: SuperHeroeApiService
-                               ):SuperHeroeRepository {
+class SuperHeroeDataRepository @Inject constructor(
+    private val localDataSource: SuperHeroeLocalDataSource,
+    private val remoteDataSource: SuperHeroesRemoteDataSource
+) : SuperHeroeRepository {
 
     override suspend fun obratinSuperHeroe(): Either<ErrorApp, List<SuperHeroePrincipalData>> {
-        val superHeroes:MutableList<SuperHeroePrincipalData> = mutableListOf()
-        val listaLocal=localDataSource.getSuperHeroe().get()
-        return try {
-            if (listaLocal.size!=0){
-                localDataSource.getSuperHeroe()
-            }else{
-                val result= apiClient.getPrincipaData().body()!!
-                for (i in result.indices){
-                    superHeroes.add(result[i].toModel())
-                    localDataSource.saveSuperHeroe(superHeroes[i])
+        val local = localDataSource.getSuperHeroe().get()
+        return if (local.size != 0) {
+            localDataSource.getSuperHeroe()
+        } else {
+            remoteDataSource.getSuperHeroe().map { superHeroes ->
+                superHeroes.map { superHeroe ->
+                    localDataSource.saveSuperHeroe(superHeroe)
                 }
-                superHeroes.right()
+                superHeroes
             }
 
-        }catch (ex:Exception){
-            ErrorApp.UnknowError.left()
         }
     }
 
     override suspend fun obtainSuperHeroeById(id: String): Either<ErrorApp, SuperHeroePrincipalData> {
-        return try {
-            if (localDataSource.getSuperHeroeById(id).isRight()){
-                localDataSource.getSuperHeroeById(id)
-            }else{
-                val result= apiClient.getPrincipaDataById(id).body()!!
-                localDataSource.saveSuperHeroe(result.toModel())
-                result.toModel().right()
+        val local = localDataSource.getSuperHeroeById(id)
+        return if (local.isRight()) {
+            local
+        } else {
+            remoteDataSource.getSuperHeroeById(id).map { superHeore ->
+                localDataSource.saveSuperHeroe(superHeore)
+                superHeore
             }
-
-        }catch (ex:Exception){
-            ErrorApp.UnknowError.left()
         }
+
     }
 }

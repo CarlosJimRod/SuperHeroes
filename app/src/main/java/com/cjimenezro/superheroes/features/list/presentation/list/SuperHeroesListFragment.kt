@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.cjimenezro.superheroes.R
 import com.cjimenezro.superheroes.databinding.FragmentSuperHeroeBinding
 import com.cjimenezro.superheroes.features.list.MainActivity
-import com.cjimenezro.superheroes.features.list.data.remote.SuperHeroesApiClient
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroe
 import com.cjimenezro.superheroes.features.list.presentation.list.adapter.SuperHeroesListAdapter
 import com.faltenreich.skeletonlayout.Skeleton
@@ -26,9 +25,7 @@ class SuperHeroesListFragment : Fragment() {
     private var _binding: FragmentSuperHeroeBinding? = null
     private val binding get() = _binding!!
 
-    private val superHeroesApiClient=SuperHeroesApiClient()
-
-    private lateinit var skeleton:Skeleton
+    private lateinit var skeleton: Skeleton
 
     val viewModel by viewModels<SuperHeroesListViewModel>()
 
@@ -44,7 +41,7 @@ class SuperHeroesListFragment : Fragment() {
         return binding.root
     }
 
-    private fun setupView(){
+    private fun setupView() {
         binding.apply {
             list.layoutManager = LinearLayoutManager(
                 this@SuperHeroesListFragment.context,
@@ -59,7 +56,7 @@ class SuperHeroesListFragment : Fragment() {
             list.adapter = superHeroApadter
             layoutList.toolbar.apply {
 
-                setNavigationOnClickListener{
+                setNavigationOnClickListener {
                     findNavController().navigateUp()
                 }
 
@@ -103,7 +100,7 @@ class SuperHeroesListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
-        skeleton=binding.list.applySkeleton(R.layout.view_super_heore_item,8)
+        skeleton = binding.list.applySkeleton(R.layout.view_super_heore_item, 8)
         viewModel.loadSuperHeroe()
     }
 
@@ -111,12 +108,12 @@ class SuperHeroesListFragment : Fragment() {
         (activity as MainActivity).showMessage()
     }
 
-    private fun setupObservers(){
-        val observer= Observer<SuperHeroesListViewModel.UiState>{
-            if (it.isLoading){
-                Snackbar.make(binding.root,"Cargando ...", Snackbar.LENGTH_SHORT).show()
+    private fun setupObservers() {
+        val observer = Observer<SuperHeroesListViewModel.UiState> {
+            if (it.isLoading) {
+                Snackbar.make(binding.root, "Cargando ...", Snackbar.LENGTH_SHORT).show()
                 showLoading()
-            }else{
+            } else {
                 hideLoading()
             }
             it.errorApp?.apply {
@@ -127,14 +124,14 @@ class SuperHeroesListFragment : Fragment() {
                 bind(this)
             }
         }
-        viewModel.uiState.observe(viewLifecycleOwner,observer)
+        viewModel.uiState.observe(viewLifecycleOwner, observer)
     }
 
-    private fun showLoading(){
+    private fun showLoading() {
         skeleton.showSkeleton()
     }
 
-    private fun hideLoading(){
+    private fun hideLoading() {
         skeleton.showOriginal()
     }
 
@@ -142,7 +139,7 @@ class SuperHeroesListFragment : Fragment() {
         binding.viewError.root.show()
     }*/
 
-    private fun bind(superHeroes:List<SuperHeroe>){
+    private fun bind(superHeroes: List<SuperHeroe>) {
         superHeroApadter.submitList(superHeroes)
     }
 

@@ -25,7 +25,7 @@ class SuperHeroeLocalDataSource @Inject constructor(
             }
             true.right()
         }catch (ex:Exception){
-            return ErrorApp.UnknowError.left()
+            return ErrorApp.UnknownError.left()
         }
     }
 
@@ -39,7 +39,7 @@ class SuperHeroeLocalDataSource @Inject constructor(
 
             return hotels.right()
         }catch (ex:Exception){
-            return ErrorApp.UnknowError.left()
+            return ErrorApp.UnknownError.left()
         }
 
     }
@@ -48,13 +48,13 @@ class SuperHeroeLocalDataSource @Inject constructor(
         return try {
             val jsonBiography=sharedPref.getString(id,null)
             if (jsonBiography.isNullOrBlank()){
-                ErrorApp.UnknowError.left()
+                ErrorApp.UnknownError.left()
             }else{
                 val superHeroe=jsonSerialization.fromJson(jsonBiography!!, SuperHeroePrincipalData::class.java)
                 superHeroe.right()
             }
         }catch (ex:Exception){
-            ErrorApp.UnknowError.left()
+            ErrorApp.UnknownError.left()
         }
 
     }
