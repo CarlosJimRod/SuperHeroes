@@ -20,7 +20,7 @@ class GetSuperHeroeByIdUseCase @Inject constructor(
             val superHeroe=SuperHeroe(result,biography,work)
             superHeroe.right()
         }catch (ex:Exception){
-            return ErrorApp.UnknowError.left()
+            return ErrorApp.UnknownError.left()
         }
     }
 

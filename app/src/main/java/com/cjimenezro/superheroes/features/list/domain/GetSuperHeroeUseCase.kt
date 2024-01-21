@@ -25,7 +25,7 @@ class GetSuperHeroeUseCase @Inject constructor(
             }
             superHeroesList.right()
         }catch (Ex:Exception){
-            return ErrorApp.UnknowError.left()
+            return ErrorApp.UnknownError.left()
         }
     }
 

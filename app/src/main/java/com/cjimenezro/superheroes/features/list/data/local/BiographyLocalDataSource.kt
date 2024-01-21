@@ -25,7 +25,7 @@ class BiographyLocalDataSource @Inject constructor(
             }
             true.right()
         }catch (ex:Exception){
-            return ErrorApp.UnknowError.left()
+            return ErrorApp.UnknownError.left()
         }
     }
 
@@ -33,13 +33,13 @@ class BiographyLocalDataSource @Inject constructor(
         return try {
             val jsonBiography=sharedPref.getString(id,null)
             if (jsonBiography.isNullOrBlank()){
-                ErrorApp.UnknowError.left()
+                ErrorApp.UnknownError.left()
             }else{
                 val biography=jsonSerialization.fromJson(jsonBiography!!, SuperHeroeBiography::class.java)
                 biography.right()
             }
         }catch (ex:Exception){
-            ErrorApp.UnknowError.left()
+            ErrorApp.UnknownError.left()
         }
 
     }

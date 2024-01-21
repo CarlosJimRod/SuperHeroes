@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.cjimenezro.superheroes.R
 import com.cjimenezro.superheroes.app.extensions.setUrl
 import com.cjimenezro.superheroes.databinding.FragmentSuperHeroeDetailsBinding
-import com.cjimenezro.superheroes.features.list.data.remote.SuperHeroesApiClient
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroe
 import com.cjimenezro.superheroes.features.list.presentation.detail.adapter.SuperHeroesDetailAdapter
 import com.google.android.material.snackbar.Snackbar
@@ -30,8 +29,6 @@ class SuperHeroesDetailFragment : Fragment() {
     val args: SuperHeroesDetailFragmentArgs by navArgs()
 
     val viewModel by viewModels<SuperHeroesDetailViewModel>()
-
-    private val superHeroesApiClient=SuperHeroesApiClient()
 
     private val superHeroeDetailAdapter= SuperHeroesDetailAdapter()
     override fun onCreateView(
