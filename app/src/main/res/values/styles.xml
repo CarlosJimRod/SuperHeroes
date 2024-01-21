@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppBody" parent="TextAppearance.Material3.BodyLarge" />
+
+    <style name="AppFilledButton" parent="Widget.Material3.Button.IconButton.Filled" />
+
+    <style name="AppTitleCard" parent="TextAppearance.Material3.TitleMedium" />
+</resources>

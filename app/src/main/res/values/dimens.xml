@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="horizontal_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <!-- error view -->
+    <dimen name="title_error_top_margin">30dp</dimen>
+    <dimen name="imagen_error_top_margin">30dp</dimen>
+    <dimen name="description_error_top_margin">16dp</dimen>
+    <dimen name="imagen_error">200dp</dimen>
+    <dimen name="margin_horizontal_button_retry">115dp</dimen>
+    <dimen name="vertical_margin">16dp</dimen>
+    <dimen name="vertical_space_button">8dp</dimen>
+</resources>

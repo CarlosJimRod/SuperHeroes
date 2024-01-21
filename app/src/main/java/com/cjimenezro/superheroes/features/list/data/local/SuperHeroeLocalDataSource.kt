@@ -1,25 +1,27 @@
 package com.cjimenezro.superheroes.features.list.data.local
 
 import android.content.Context
-import com.cjimenezro.superheroes.app.Either
-import com.cjimenezro.superheroes.app.ErrorApp
-import com.cjimenezro.superheroes.app.left
-import com.cjimenezro.superheroes.app.right
-import com.cjimenezro.superheroes.app.serialization.JsonSerialization
+import com.cjimenezro.superheroes.app.data.serialization.JsonSerialization
+import com.cjimenezro.superheroes.app.domain.Either
+import com.cjimenezro.superheroes.app.domain.ErrorApp
+import com.cjimenezro.superheroes.app.domain.left
+import com.cjimenezro.superheroes.app.domain.right
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroePrincipalData
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class SuperHeroeLocalDataSource @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val jsonSerialization: JsonSerialization) {
+    private val jsonSerialization: JsonSerialization
+) {
 
-    private val sharedPref=context.getSharedPreferences("SuperHeroes",Context.MODE_PRIVATE)
+    private val sharedPref = context.getSharedPreferences("SuperHeroes", Context.MODE_PRIVATE)
 
     fun saveSuperHeroe(superHeroe: SuperHeroePrincipalData): Either<ErrorApp, Boolean> {
         return try {
             with(sharedPref.edit()) {
-                val jsonSuperHeroe = jsonSerialization.toJson(superHeroe, SuperHeroePrincipalData::class.java)
+                val jsonSuperHeroe =
+                    jsonSerialization.toJson(superHeroe, SuperHeroePrincipalData::class.java)
                 putString(superHeroe.id.toString(), jsonSuperHeroe)
                 apply()
             }

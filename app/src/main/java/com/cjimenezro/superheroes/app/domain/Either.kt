@@ -1,4 +1,4 @@
-package com.cjimenezro.superheroes.app
+package com.cjimenezro.superheroes.app.domain
 
 sealed class Either<out L, out R> {
 

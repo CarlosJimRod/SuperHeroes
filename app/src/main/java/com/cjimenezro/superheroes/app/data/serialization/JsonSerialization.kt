@@ -1,4 +1,4 @@
-package com.cjimenezro.superheroes.app.serialization
+package com.cjimenezro.superheroes.app.data.serialization
 
 interface JsonSerialization {
 

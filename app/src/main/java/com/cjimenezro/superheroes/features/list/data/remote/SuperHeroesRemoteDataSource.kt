@@ -1,8 +1,8 @@
 package com.cjimenezro.superheroes.features.list.data.remote
 
-import com.cjimenezro.superheroes.app.Either
-import com.cjimenezro.superheroes.app.ErrorApp
 import com.cjimenezro.superheroes.app.data.remote.apiCall
+import com.cjimenezro.superheroes.app.domain.Either
+import com.cjimenezro.superheroes.app.domain.ErrorApp
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroeBiography
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroePrincipalData
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroeWork
