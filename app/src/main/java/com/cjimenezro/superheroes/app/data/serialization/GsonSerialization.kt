@@ -1,4 +1,4 @@
-package com.cjimenezro.superheroes.app.serialization
+package com.cjimenezro.superheroes.app.data.serialization
 
 import com.google.gson.Gson
 import javax.inject.Inject

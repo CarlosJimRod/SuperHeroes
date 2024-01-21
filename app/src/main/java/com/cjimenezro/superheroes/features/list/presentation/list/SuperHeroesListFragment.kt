@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cjimenezro.superheroes.R
+import com.cjimenezro.superheroes.app.presentation.error.ErrorUiModel
 import com.cjimenezro.superheroes.databinding.FragmentSuperHeroeBinding
 import com.cjimenezro.superheroes.features.list.MainActivity
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroe
@@ -117,7 +118,7 @@ class SuperHeroesListFragment : Fragment() {
                 hideLoading()
             }
             it.errorApp?.apply {
-                //showError(this)
+                showError(this)
             }
 
             it.superHeroe?.apply {
@@ -135,9 +136,9 @@ class SuperHeroesListFragment : Fragment() {
         skeleton.showOriginal()
     }
 
-    /*private fun showError(error: ErrorApp) {
-        binding.viewError.root.show()
-    }*/
+    private fun showError(error: ErrorUiModel) {
+        binding.errorView.render(error)
+    }
 
     private fun bind(superHeroes: List<SuperHeroe>) {
         superHeroApadter.submitList(superHeroes)

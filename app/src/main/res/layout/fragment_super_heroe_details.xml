@@ -174,13 +174,18 @@
             app:layout_constraintTop_toBottomOf="@id/attributes_super_heroe_detail"
             app:layout_constraintStart_toStartOf="@id/image_super_heroe_detail"
             app:layout_constraintEnd_toEndOf="@id/image_super_heroe_detail"
-            tools:listitem="@layout/view_super_heroe_detail_item"/>
+            tools:listitem="@layout/view_super_heroe_detail_item" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.faltenreich.skeletonlayout.SkeletonLayout>
+        </com.faltenreich.skeletonlayout.SkeletonLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <com.cjimenezro.superheroes.app.presentation.error.ErrorView
+        android:id="@+id/error_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

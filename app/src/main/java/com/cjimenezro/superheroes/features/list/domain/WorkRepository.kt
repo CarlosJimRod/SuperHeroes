@@ -1,10 +1,10 @@
 package com.cjimenezro.superheroes.features.list.domain
 
-import com.cjimenezro.superheroes.app.Either
-import com.cjimenezro.superheroes.app.ErrorApp
+import com.cjimenezro.superheroes.app.domain.Either
+import com.cjimenezro.superheroes.app.domain.ErrorApp
 
 interface WorkRepository {
 
-    suspend fun obtainWork(id:String):Either<ErrorApp,SuperHeroeWork>
+    suspend fun obtainWork(id: String): Either<ErrorApp, SuperHeroeWork>
 
 }

@@ -1,9 +1,9 @@
 package com.cjimenezro.superheroes.app.data.remote
 
-import com.cjimenezro.superheroes.app.Either
-import com.cjimenezro.superheroes.app.ErrorApp
-import com.cjimenezro.superheroes.app.left
-import com.cjimenezro.superheroes.app.right
+import com.cjimenezro.superheroes.app.domain.Either
+import com.cjimenezro.superheroes.app.domain.ErrorApp
+import com.cjimenezro.superheroes.app.domain.left
+import com.cjimenezro.superheroes.app.domain.right
 import retrofit2.Response
 import java.net.ConnectException
 import java.net.SocketTimeoutException

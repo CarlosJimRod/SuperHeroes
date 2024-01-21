@@ -1,9 +1,9 @@
 package com.cjimenezro.superheroes.features.list.domain
 
-import com.cjimenezro.superheroes.app.Either
-import com.cjimenezro.superheroes.app.ErrorApp
-import com.cjimenezro.superheroes.app.left
-import com.cjimenezro.superheroes.app.right
+import com.cjimenezro.superheroes.app.domain.Either
+import com.cjimenezro.superheroes.app.domain.ErrorApp
+import com.cjimenezro.superheroes.app.domain.left
+import com.cjimenezro.superheroes.app.domain.right
 import javax.inject.Inject
 
 class GetSuperHeroeByIdUseCase @Inject constructor(
@@ -12,14 +12,14 @@ class GetSuperHeroeByIdUseCase @Inject constructor(
     private val workRepository: WorkRepository
 ) {
 
-    suspend operator fun invoke(id:String):Either<ErrorApp,SuperHeroe>{
-        return try{
-            val result=principalDataRepository.obtainSuperHeroeById(id).get()
-            val biography=biographyRepository.obtainBiography(id).get()
-            val work=workRepository.obtainWork(id).get()
-            val superHeroe=SuperHeroe(result,biography,work)
+    suspend operator fun invoke(id: String): Either<ErrorApp, SuperHeroe> {
+        return try {
+            val result = principalDataRepository.obtainSuperHeroeById(id).get()
+            val biography = biographyRepository.obtainBiography(id).get()
+            val work = workRepository.obtainWork(id).get()
+            val superHeroe = SuperHeroe(result, biography, work)
             superHeroe.right()
-        }catch (ex:Exception){
+        } catch (ex: Exception) {
             return ErrorApp.UnknownError.left()
         }
     }

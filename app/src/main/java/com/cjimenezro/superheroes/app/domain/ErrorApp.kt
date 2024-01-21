@@ -1,4 +1,4 @@
-package com.cjimenezro.superheroes.app
+package com.cjimenezro.superheroes.app.domain
 
 sealed class ErrorApp {
     object UnknownError : ErrorApp()

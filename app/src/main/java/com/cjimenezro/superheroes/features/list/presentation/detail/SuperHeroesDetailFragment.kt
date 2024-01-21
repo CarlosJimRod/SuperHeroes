@@ -13,7 +13,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cjimenezro.superheroes.R
+import com.cjimenezro.superheroes.app.extensions.hide
 import com.cjimenezro.superheroes.app.extensions.setUrl
+import com.cjimenezro.superheroes.app.presentation.error.ErrorUiModel
 import com.cjimenezro.superheroes.databinding.FragmentSuperHeroeDetailsBinding
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroe
 import com.cjimenezro.superheroes.features.list.presentation.detail.adapter.SuperHeroesDetailAdapter
@@ -100,7 +102,10 @@ class SuperHeroesDetailFragment : Fragment() {
                 hideLoading()
             }
             it.errorApp?.apply {
-                //showError(this)
+                showError(this)
+                binding.name1.hide()
+                binding.name2.hide()
+                binding.name3.hide()
             }
 
             it.superHeroe?.apply {
@@ -110,27 +115,30 @@ class SuperHeroesDetailFragment : Fragment() {
         viewModel.uiState.observe(viewLifecycleOwner,observer)
     }
 
-    private fun showLoading(){
+    private fun showLoading() {
         binding.skeletonLayout.showSkeleton()
     }
 
-    private fun hideLoading(){
+    private fun hideLoading() {
         binding.skeletonLayout.showOriginal()
     }
 
-    /*private fun showError(error: ErrorApp) {
-        binding.viewError.root.show()
-    }*/
+    private fun showError(error: ErrorUiModel) {
+        binding.errorView.render(error)
+    }
 
-    private fun bind(superHeroe:SuperHeroe){
-        binding. apply {
+    private fun bind(superHeroe: SuperHeroe) {
+        binding.apply {
             imageSuperHeroeDetail.setUrl(superHeroe.principalData.imageUrl[0])
-            nameSuperHeroeDetail.text=superHeroe.principalData.name
-            stateSuperHeroeDetail.text=superHeroe.biography.alignment
-            descriptionSuperHeroeDetail.text=superHeroe.biography.fullName
-            attributesSuperHeroeDetail.findViewById<ConstraintLayout>(R.id.intelligence).findViewById<TextView>(R.id.number1).text=superHeroe.principalData.stats[0]
-            attributesSuperHeroeDetail.findViewById<ConstraintLayout>(R.id.speed).findViewById<TextView>(R.id.number2).text=superHeroe.principalData.stats[1]
-            attributesSuperHeroeDetail.findViewById<ConstraintLayout>(R.id.combat).findViewById<TextView>(R.id.number3).text=superHeroe.principalData.stats[2]
+            nameSuperHeroeDetail.text = superHeroe.principalData.name
+            stateSuperHeroeDetail.text = superHeroe.biography.alignment
+            descriptionSuperHeroeDetail.text = superHeroe.biography.fullName
+            attributesSuperHeroeDetail.findViewById<ConstraintLayout>(R.id.intelligence)
+                .findViewById<TextView>(R.id.number1).text = superHeroe.principalData.stats[0]
+            attributesSuperHeroeDetail.findViewById<ConstraintLayout>(R.id.speed)
+                .findViewById<TextView>(R.id.number2).text = superHeroe.principalData.stats[1]
+            attributesSuperHeroeDetail.findViewById<ConstraintLayout>(R.id.combat)
+                .findViewById<TextView>(R.id.number3).text = superHeroe.principalData.stats[2]
         }
         superHeroeDetailAdapter.submitList(superHeroe.principalData.imageUrl )
 
