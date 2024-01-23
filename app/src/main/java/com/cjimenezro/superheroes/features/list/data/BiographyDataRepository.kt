@@ -2,7 +2,7 @@ package com.cjimenezro.superheroes.features.list.data
 
 import com.cjimenezro.superheroes.app.domain.Either
 import com.cjimenezro.superheroes.app.domain.ErrorApp
-import com.cjimenezro.superheroes.features.list.data.local.BiographyLocalDataSource
+import com.cjimenezro.superheroes.features.list.data.local.sharedPreferences.BiographyLocalDataSource
 import com.cjimenezro.superheroes.features.list.data.remote.SuperHeroesRemoteDataSource
 import com.cjimenezro.superheroes.features.list.domain.BiographyRepository
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroeBiography
