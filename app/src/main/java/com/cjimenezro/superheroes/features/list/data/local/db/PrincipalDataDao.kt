@@ -9,6 +9,9 @@ interface PrincipalDataDao {
     @Query("SELECT * FROM principalDataEntity")
     suspend fun getAll(): List<PrincipalDataEntity>
 
+    @Query("SELECT * FROM principalDataEntity WHERE id IN (:id)")
+    suspend fun getById(id: String): PrincipalDataEntity?
+
     @Insert
     suspend fun insertAll(vararg principalData: PrincipalDataEntity)
 

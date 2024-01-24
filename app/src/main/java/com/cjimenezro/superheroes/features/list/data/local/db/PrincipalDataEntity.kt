@@ -6,8 +6,9 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class PrincipalDataEntity(
-    @PrimaryKey val id: Int,
+    @PrimaryKey val id: String,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "image_url") val imageUrl: String,
-    @ColumnInfo(name = "stats") val stats: MutableList<String>
+    @ColumnInfo(name = "stats") val stats: MutableList<String>,
+    @ColumnInfo(name = "created_at") val createdAt: Long
 )

@@ -6,12 +6,12 @@ import androidx.room.Query
 
 @Dao
 interface BiographyDao {
-    @Query("SELECT * FROM biographyentity WHERE id IN (:id)")
-    suspend fun getById(id: Int): BiographyEntity?
+    @Query("SELECT * FROM biographyEntity WHERE id IN (:id)")
+    suspend fun getById(id: String): BiographyEntity?
 
     @Insert
     suspend fun insert(biography: BiographyEntity)
 
-    @Query("DELETE FROM biographyentity WHERE id IN (:id)")
-    suspend fun deleteById(id: Int)
+    @Query("DELETE FROM biographyEntity WHERE id IN (:id)")
+    suspend fun deleteById(id: String)
 }

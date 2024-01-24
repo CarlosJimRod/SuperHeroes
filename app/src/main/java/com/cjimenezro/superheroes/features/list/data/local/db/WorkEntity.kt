@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class WorkEntity(
-    @PrimaryKey val id: Int,
-    @ColumnInfo(name = "ocupation") val ocupation: String
+    @PrimaryKey val id: String,
+    @ColumnInfo(name = "ocupation") val ocupation: String,
+    @ColumnInfo(name = "created_at") val createdAt: Long
 )
