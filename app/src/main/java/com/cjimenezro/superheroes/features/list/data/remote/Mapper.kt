@@ -9,7 +9,12 @@ fun ImagesUrl.toModel():MutableList<String> = mutableListOf(this.imageUrl1,this.
 fun Powerstats.toModel():MutableList<String> = mutableListOf(this.intelligence,this.speed,this.combat)
 
 fun SuperHeroePincipalDataApiModel.toModel(): SuperHeroePrincipalData =
-    SuperHeroePrincipalData(this.id,this.name,this.urlImages.toModel(),this.stats.toModel())
+    SuperHeroePrincipalData(
+        this.id.toString(),
+        this.name,
+        this.urlImages.toModel(),
+        this.stats.toModel()
+    )
 
 fun SuperHeroeBiographyApiModel.toModel(): SuperHeroeBiography = SuperHeroeBiography(this.fullName,this.alignment)
 

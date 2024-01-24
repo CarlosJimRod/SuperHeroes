@@ -14,7 +14,7 @@ fun SuperHeroeBiography.toEntity(id: String, ms: Long): BiographyEntity =
     BiographyEntity(id, this.fullName, this.alignment, ms)
 
 fun PrincipalDataEntity.toModel(): SuperHeroePrincipalData =
-    SuperHeroePrincipalData(this.id.toInt(), this.name, mutableListOf(this.imageUrl), this.stats)
+    SuperHeroePrincipalData(this.id, this.name, mutableListOf(this.imageUrl), this.stats)
 
 fun SuperHeroePrincipalData.toEntity(ms: Long): PrincipalDataEntity =
     PrincipalDataEntity(this.id.toString(), this.name, this.imageUrl[0], this.stats, ms)

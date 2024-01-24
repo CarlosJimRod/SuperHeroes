@@ -7,9 +7,9 @@ data class SuperHeroe (
 )
 
 data class SuperHeroePrincipalData (
-    val id:Int,
-    val name:String,
-    val imageUrl:MutableList<String>,
+    val id: String,
+    val name: String,
+    val imageUrl: MutableList<String>,
     val stats: MutableList<String>
 )
 
