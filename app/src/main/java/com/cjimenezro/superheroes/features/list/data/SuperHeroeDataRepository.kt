@@ -15,17 +15,15 @@ class SuperHeroeDataRepository @Inject constructor(
 ) : SuperHeroeRepository {
 
     override suspend fun obratinSuperHeroe(): Either<ErrorApp, List<SuperHeroePrincipalData>> {
-        localDataSource.getPrincipalData().map { localListPrincipalData ->
-            localListPrincipalData.let {
-                return it.right()
+        val local = localDataSource.getPrincipalData()
+        return if (local.isRight() && local.get().isNotEmpty()) {
+            local
+        } else {
+            remoteDataSource.getSuperHeroe().map { principalDataList ->
+                localDataSource.deletePrincipalData()
+                localDataSource.savePrincipalData(principalDataList)
+                principalDataList
             }
-        }
-
-        //Remote
-        return remoteDataSource.getSuperHeroe().map { principalDataList ->
-            localDataSource.deletePrincipalData()
-            localDataSource.savePrincipalData(principalDataList)
-            principalDataList
         }
     }
 
