@@ -10,9 +10,9 @@ class SuperHeroesListAdapter : ListAdapter<SuperHeroe, SuperHeroesListViewHolder
     SuperHeroesListDiffUtil()
 ){
 
-    lateinit var onClick:(heroId:Int) -> Unit
+    lateinit var onClick:(heroId:String) -> Unit
 
-    fun setEvent(onClick:(Int) -> Unit){
+    fun setEvent(onClick:(String) -> Unit){
         this.onClick=onClick
     }
 

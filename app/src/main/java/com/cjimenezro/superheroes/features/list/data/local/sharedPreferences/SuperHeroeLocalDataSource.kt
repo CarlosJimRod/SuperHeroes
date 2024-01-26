@@ -1,4 +1,4 @@
-package com.cjimenezro.superheroes.features.list.data.local
+package com.cjimenezro.superheroes.features.list.data.local.sharedPreferences
 
 import android.content.Context
 import com.cjimenezro.superheroes.app.data.serialization.JsonSerialization

@@ -9,7 +9,7 @@ import com.cjimenezro.superheroes.features.list.domain.SuperHeroe
 class SuperHeroesListViewHolder(val view: View):RecyclerView.ViewHolder(view) {
 
     private lateinit var binding : ViewSuperHeoreItemBinding
-    fun bind(superHeroe: SuperHeroe, onClick: (Int) ->Unit){
+    fun bind(superHeroe: SuperHeroe, onClick: (String) ->Unit){
         binding = ViewSuperHeoreItemBinding.bind(view)
 
         binding.apply {

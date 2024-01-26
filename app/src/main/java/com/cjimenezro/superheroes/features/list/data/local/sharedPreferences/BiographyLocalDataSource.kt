@@ -1,11 +1,11 @@
-package com.cjimenezro.superheroes.features.list.data.local
+package com.cjimenezro.superheroes.features.list.data.local.sharedPreferences
 
 import android.content.Context
+import com.cjimenezro.superheroes.app.data.serialization.JsonSerialization
 import com.cjimenezro.superheroes.app.domain.Either
 import com.cjimenezro.superheroes.app.domain.ErrorApp
 import com.cjimenezro.superheroes.app.domain.left
 import com.cjimenezro.superheroes.app.domain.right
-import com.cjimenezro.superheroes.app.data.serialization.JsonSerialization
 import com.cjimenezro.superheroes.features.list.domain.SuperHeroeBiography
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
